@@ -1,8 +1,10 @@
 import 'dart:developer';
 
+import 'package:easy_cart/feature/auth/presentation/screen/login_screen.dart';
 import 'package:easy_cart/feature/onboarding/constant.dart';
 import 'package:easy_cart/feature/onboarding/presentation/widget/dot_indicator.dart';
 import 'package:easy_cart/feature/onboarding/presentation/widget/pic_text.dart';
+import 'package:easy_cart/utils/extension/nav_extenstion.dart';
 import 'package:flutter/material.dart';
 
 class OnBoardScreen extends StatelessWidget {
@@ -45,7 +47,24 @@ class OnBoardScreen extends StatelessWidget {
           ValueListenableBuilder<int>(
             valueListenable: currentPageNotifier,
             builder: (context, currentPage, child) {
-              return DotIndicator(width: width, selectedIndex: currentPage);
+              return DotIndicator(
+                width: width,
+                selectedIndex: currentPage,
+                previousTap: () {
+                  if (currentPage > 0) {
+                    currentPageNotifier.value--;
+                  }
+                },
+                forwardTap: () {
+                  if (currentPage == 2) {
+                    Navigator.of(context).pushAndRemoveUntilPage(
+                      const LoginScreen(),
+                    );
+                  } else if (currentPage < 2) {
+                    currentPageNotifier.value++;
+                  }
+                },
+              );
             },
           ),
         ],
