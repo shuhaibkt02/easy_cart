@@ -1,3 +1,4 @@
+import 'package:easy_cart/feature/auth/presentation/logic/auth_provider.dart';
 import 'package:easy_cart/feature/auth/presentation/widget/custom_button.dart';
 import 'package:easy_cart/feature/auth/presentation/widget/custom_text.dart';
 import 'package:easy_cart/feature/auth/presentation/widget/custom_text_field.dart';
@@ -7,19 +8,31 @@ import 'package:easy_cart/feature/auth/presentation/widget/sign_options.dart';
 import 'package:easy_cart/utils/core/custom_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (context) => AuthProvider(),
+      child: const LoginScreenWrapper(),
+    );
+  }
+}
+
+class LoginScreenWrapper extends StatelessWidget {
+  const LoginScreenWrapper({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     double width = MediaQuery.sizeOf(context).width;
     final textStyle = Theme.of(context).textTheme;
     const height30 = SizedBox(height: 30);
-    // ignore: no_leading_underscores_for_local_identifiers
-    GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-    TextEditingController emailController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
+    final prov = Provider.of<AuthProvider>(context);
+    final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -42,7 +55,8 @@ class LoginScreen extends StatelessWidget {
                   textStyle: textStyle,
                   label: 'Email',
                   hintText: 'Email',
-                  controller: emailController,
+                  // controller: emailController,
+                  controller: prov.emailController,
                 ),
                 CustomTextField(
                   obscureText: true,
@@ -52,7 +66,8 @@ class LoginScreen extends StatelessWidget {
                   hintText: '*******',
                   suffixIcon:
                       const Icon(CupertinoIcons.eye, color: Colors.black54),
-                  controller: passwordController,
+                  // controller: passwordController,
+                  controller: prov.passwordController,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 18.0),
@@ -71,7 +86,7 @@ class LoginScreen extends StatelessWidget {
                   width: width,
                   btnLabel: 'Sign In',
                   onpress: () {
-                    _formKey.currentState?.validate();
+                    prov.loginFunc(formKey: _formKey);
                   },
                 ),
                 height30,
@@ -81,7 +96,7 @@ class LoginScreen extends StatelessWidget {
                 height30,
                 RowText(
                   textStyle: textStyle,
-                  onTap: () {},
+                  onTap: () => prov.goToSignUp(context: context),
                   text: 'Don\'t have an account?   ',
                   linkText: 'Sign Up',
                 )
