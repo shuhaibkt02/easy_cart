@@ -1,3 +1,19 @@
+class OnboardModel {
+  final String image;
+  final List<String> titles;
+  final String subtitle;
+
+  OnboardModel({required this.image, required this.titles, required this.subtitle});
+}
+
+List<OnboardModel> mainList = [
+  OnboardModel(image: image1, titles: listTitle1, subtitle: subLabel1),
+  OnboardModel(image: image2, titles: listTitle2, subtitle: subLabel2),
+  OnboardModel(image: image3, titles: listTitle3, subtitle: subLabel3),
+];
+
+
+
 const subLabel1 =
     'Explore our wide selection of fresh fruits,\n vegetables, and organic produce, from farm to table.';
 const subLabel2 =
@@ -28,16 +44,4 @@ const image1 = 'assets/1st.jpg';
 const image2 = 'assets/2nd.jpg';
 const image3 = 'assets/3rd.png';
 
-List<OnboardModel> mainList = [
-  OnboardModel(image: image1, titles: listTitle1, subtitle: subLabel1),
-  OnboardModel(image: image2, titles: listTitle2, subtitle: subLabel2),
-  OnboardModel(image: image3, titles: listTitle3, subtitle: subLabel3),
-];
 
-class OnboardModel {
-  final String image;
-  final List<String> titles;
-  final String subtitle;
-
-  OnboardModel({required this.image, required this.titles, required this.subtitle});
-}

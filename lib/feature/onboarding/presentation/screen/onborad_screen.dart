@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:easy_cart/feature/onboarding/presentation/constant.dart';
+import 'package:easy_cart/feature/onboarding/constant.dart';
 import 'package:easy_cart/feature/onboarding/presentation/widget/dot_indicator.dart';
 import 'package:easy_cart/feature/onboarding/presentation/widget/pic_text.dart';
 import 'package:flutter/material.dart';
