@@ -9,6 +9,8 @@ class CustomTextField extends StatelessWidget {
     required this.hintText,
     this.obscureText = false,
     this.suffixIcon,
+    required this.controller,
+    this.keyboardType,
   });
 
   final double width;
@@ -17,6 +19,8 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final bool obscureText;
   final Widget? suffixIcon;
+  final TextEditingController controller;
+  final TextInputType? keyboardType;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +32,8 @@ class CustomTextField extends StatelessWidget {
           child: Text(label, style: textStyle.bodyMedium),
         ),
         TextFormField(
+          keyboardType: keyboardType,
+          controller: controller,
           obscureText: obscureText,
           validator: (value) {
             if (value == null || value.isEmpty) {
@@ -35,8 +41,9 @@ class CustomTextField extends StatelessWidget {
             }
             return null;
           },
-          style: textStyle.bodySmall,
+          style: textStyle.bodySmall?.copyWith(color: Colors.black87),
           decoration: InputDecoration(
+            contentPadding: const EdgeInsets.symmetric(horizontal: 14),
             hintText: hintText,
             suffixIcon: suffixIcon,
           ),

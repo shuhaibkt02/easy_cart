@@ -16,7 +16,10 @@ class LoginScreen extends StatelessWidget {
     double width = MediaQuery.sizeOf(context).width;
     final textStyle = Theme.of(context).textTheme;
     const height30 = SizedBox(height: 30);
+    // ignore: no_leading_underscores_for_local_identifiers
     GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+    TextEditingController emailController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -39,6 +42,7 @@ class LoginScreen extends StatelessWidget {
                   textStyle: textStyle,
                   label: 'Email',
                   hintText: 'Email',
+                  controller: emailController,
                 ),
                 CustomTextField(
                   obscureText: true,
@@ -48,6 +52,7 @@ class LoginScreen extends StatelessWidget {
                   hintText: '*******',
                   suffixIcon:
                       const Icon(CupertinoIcons.eye, color: Colors.black54),
+                  controller: passwordController,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 18.0),
