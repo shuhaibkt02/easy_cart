@@ -1,4 +1,3 @@
-
 import 'package:easy_cart/utils/core/custom_theme.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +22,7 @@ class RowText extends StatelessWidget {
       child: RichText(
         text: TextSpan(
           text: text,
-          style: textStyle.bodyMedium,
+          style: textStyle.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
           children: <TextSpan>[
             TextSpan(
               text: linkText,

@@ -1,3 +1,4 @@
+import 'package:easy_cart/feature/auth/presentation/screen/sign_up_screen.dart';
 import 'package:easy_cart/feature/onboarding/presentation/screen/splash_screen.dart';
 import 'package:easy_cart/utils/core/custom_theme.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: appTheme,
       title: 'Easy Cart',
-      home: const SplashScreen(),
+      home: const SignUpScreen(),
     );
   }
 }

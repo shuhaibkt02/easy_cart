@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class CustomText extends StatelessWidget {
@@ -32,6 +31,7 @@ class CustomText extends StatelessWidget {
           padding: const EdgeInsets.all(12.0),
           child: Text(
             message,
+            textAlign: TextAlign.center,
             style: textStyle.bodyMedium?.copyWith(
               color: Colors.grey.shade400,
             ),
