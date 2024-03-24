@@ -19,7 +19,7 @@ class OnBoardScreen extends StatelessWidget {
           Expanded(
             child: PageView.builder(
               controller: onBoard.pageController,
-              onPageChanged: (value) {},
+              onPageChanged: (value) => onBoard.onPageChanged(value: value),
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 final item = mainList[index];

@@ -15,7 +15,7 @@ class OnBoardFunctions extends ChangeNotifier {
     if (currentPage > 0) {
       currentPageNotifier.value--;
       pageController.previousPage(
-        duration: const Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 400),
         curve: Curves.easeInOut,
       );
     }
