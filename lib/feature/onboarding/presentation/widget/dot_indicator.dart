@@ -13,33 +13,40 @@ class DotIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 80,
-      width: width - 35,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          if (selectedIndex != 0)
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+      child: SizedBox(
+        height: 80,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            if (selectedIndex != 0)
+              Container(
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  border: Border.all(color: mainColor),
+                ),
+                child: const Icon(
+                  Icons.arrow_back,
+                  color: mainColor,
+                ),
+              ),
+            if (selectedIndex == 0) const SizedBox(width: 50),
+            _DotIndicator(
+              activeIndex: selectedIndex,
+            ),
             const CircleAvatar(
+              backgroundColor: mainColor,
               radius: 25,
-              backgroundColor: Colors.white,
               child: Icon(
-                Icons.arrow_back,
-                color: mainColor,
+                Icons.arrow_forward,
+                color: Colors.white,
               ),
             ),
-          if (selectedIndex == 0) const SizedBox(width: 50),
-          _DotIndicator(
-            activeIndex: selectedIndex,
-          ),
-          const CircleAvatar(
-            radius: 25,
-            child: Icon(
-              Icons.arrow_forward,
-              color: Colors.white,
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
