@@ -1,13 +1,14 @@
+import 'package:easy_cart/feature/auth/data/model/user_model.dart';
 import 'package:easy_cart/utils/core/error/server_exception.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract interface class AuthRemoteService {
-  Future<String> loginWithEmail({
+  Future<UserModel> loginWithEmail({
     required String email,
     required String password,
   });
 
-  Future<String> signUpWithEmail({
+  Future<UserModel> signUpWithEmail({
     required String name,
     required String email,
     required String password,
@@ -19,7 +20,7 @@ class AuthRemoteDataSource implements AuthRemoteService {
 
   AuthRemoteDataSource({required this.supabaseClient});
   @override
-  Future<String> loginWithEmail(
+  Future<UserModel> loginWithEmail(
       {required String email, required String password}) async {
     try {
       final res = await supabaseClient.auth.signInWithPassword(
@@ -30,14 +31,14 @@ class AuthRemoteDataSource implements AuthRemoteService {
       if (res.user == null) {
         throw ServerException(errorMessage: 'User not exist');
       }
-      return '${res.user?.id}';
+      return UserModel.fromJson(res.user!.toJson());
     } on ServerException catch (e) {
       throw ServerException(errorMessage: '$e');
     }
   }
 
   @override
-  Future<String> signUpWithEmail({
+  Future<UserModel> signUpWithEmail({
     required String name,
     required String email,
     required String password,
@@ -55,7 +56,7 @@ class AuthRemoteDataSource implements AuthRemoteService {
         throw ServerException(errorMessage: 'User is null');
       }
 
-      return response.user!.id;
+      return UserModel.fromJson(response.user!.toJson());
     } on ServerException catch (e) {
       throw ServerException(errorMessage: '$e');
     }

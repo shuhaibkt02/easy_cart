@@ -1,3 +1,4 @@
+import 'package:easy_cart/feature/auth/domain/entities/user_entities.dart';
 import 'package:easy_cart/feature/auth/domain/use%20cases/login_case.dart';
 import 'package:easy_cart/feature/auth/domain/use%20cases/sign_up_case.dart';
 import 'package:flutter/foundation.dart';

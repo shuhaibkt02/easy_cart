@@ -1,4 +1,5 @@
 import 'package:easy_cart/feature/auth/data/source/auth_remote_source.dart';
+import 'package:easy_cart/feature/auth/domain/entities/user_entities.dart';
 import 'package:easy_cart/feature/auth/domain/repositery/auth_service.dart';
 import 'package:easy_cart/utils/core/error/failure.dart';
 import 'package:easy_cart/utils/core/error/server_exception.dart';
@@ -9,7 +10,7 @@ class AuthRepositery implements AuthService {
 
   AuthRepositery({required this.authRemoteDataSource});
   @override
-  Future<Either<Failure, String>> loginWithEmail(
+  Future<Either<Failure, UserEntity>> loginWithEmail(
       {required String email, required String password}) async {
     try {
       final userId = await authRemoteDataSource.loginWithEmail(
@@ -23,7 +24,7 @@ class AuthRepositery implements AuthService {
   }
 
   @override
-  Future<Either<Failure, String>> signUpWithEmail({
+  Future<Either<Failure, UserEntity>> signUpWithEmail({
     required String name,
     required String email,
     required String password,
