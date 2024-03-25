@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:easy_cart/feature/auth/presentation/logic/Auth/auth_bloc.dart';
 import 'package:easy_cart/feature/auth/presentation/screen/sign_up_screen.dart';
 import 'package:easy_cart/feature/auth/presentation/widget/custom_button.dart';
@@ -6,6 +8,7 @@ import 'package:easy_cart/feature/auth/presentation/widget/custom_text_field.dar
 import 'package:easy_cart/feature/auth/presentation/widget/or_text.dart';
 import 'package:easy_cart/feature/auth/presentation/widget/row_text.dart';
 import 'package:easy_cart/feature/auth/presentation/widget/sign_options.dart';
+import 'package:easy_cart/feature/error/error_screen.dart';
 import 'package:easy_cart/utils/core/custom_theme.dart';
 import 'package:easy_cart/utils/extension/nav_extenstion.dart';
 import 'package:flutter/cupertino.dart';
@@ -52,9 +55,22 @@ class LoginScreen extends StatelessWidget {
           child: BlocConsumer<AuthBloc, AuthState>(
             listener: (context, state) {
               if (state is AuthSuccess) {}
+              if (state is AuthError) {
+                log('error: ${state.errorMessage}');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ErrorScreen(
+                      error: state.errorMessage,
+                      errorCode: '404',
+                    ),
+                  ),
+                );
+              }
             },
             builder: (context, state) {
               if (state is AuthLoading) {}
+
               return Form(
                 key: _formKey,
                 child: Column(
@@ -103,7 +119,7 @@ class LoginScreen extends StatelessWidget {
                     CustomButton(
                       width: width,
                       btnLabel: 'Sign In',
-                      onpress: () => loginFunc,
+                      onpress: loginFunc,
                     ),
                     height30,
                     OrText(textStyle: textStyle, text: 'Or sign in with'),
