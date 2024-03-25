@@ -11,6 +11,7 @@ class CustomTextField extends StatelessWidget {
     this.suffixIcon,
     required this.controller,
     this.keyboardType,
+    this.child,
   });
 
   final double width;
@@ -21,6 +22,7 @@ class CustomTextField extends StatelessWidget {
   final Widget? suffixIcon;
   final TextEditingController controller;
   final TextInputType? keyboardType;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -31,23 +33,24 @@ class CustomTextField extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 4.0, top: 8),
           child: Text(label, style: textStyle.bodyMedium),
         ),
-        TextFormField(
-          keyboardType: keyboardType,
-          controller: controller,
-          obscureText: obscureText,
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Please enter your ${label.toLowerCase()}';
-            }
-            return null;
-          },
-          style: textStyle.bodySmall?.copyWith(color: Colors.black87),
-          decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(horizontal: 14),
-            hintText: hintText,
-            suffixIcon: suffixIcon,
-          ),
-        ),
+        child ??
+            TextFormField(
+              keyboardType: keyboardType,
+              controller: controller,
+              obscureText: obscureText,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your ${label.toLowerCase()}';
+                }
+                return null;
+              },
+              style: textStyle.bodySmall?.copyWith(color: Colors.black87),
+              decoration: InputDecoration(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 14),
+                hintText: hintText,
+                suffixIcon: suffixIcon,
+              ),
+            ),
       ],
     );
   }
