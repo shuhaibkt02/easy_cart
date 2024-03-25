@@ -86,7 +86,7 @@ class LoginScreenWrapper extends StatelessWidget {
                   width: width,
                   btnLabel: 'Sign In',
                   onpress: () {
-                    prov.loginFunc(formKey: _formKey);
+                    prov.loginFunc(formKey: _formKey, context: context);
                   },
                 ),
                 height30,

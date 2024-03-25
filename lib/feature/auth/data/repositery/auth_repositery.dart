@@ -10,8 +10,16 @@ class AuthRepositery implements AuthService {
   AuthRepositery({required this.authRemoteDataSource});
   @override
   Future<Either<Failure, String>> loginWithEmail(
-      {required String email, required String password}) {
-    throw UnimplementedError();
+      {required String email, required String password}) async {
+    try {
+      final userId = await authRemoteDataSource.loginWithEmail(
+        email: email,
+        password: password,
+      );
+      return right(userId);
+    } on ServerException catch (e) {
+      return left(Failure(errorMessage: '$e'));
+    }
   }
 
   @override

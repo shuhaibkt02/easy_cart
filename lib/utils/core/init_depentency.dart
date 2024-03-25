@@ -1,5 +1,6 @@
 import 'package:easy_cart/feature/auth/data/repositery/auth_repositery.dart';
 import 'package:easy_cart/feature/auth/data/source/auth_remote_source.dart';
+import 'package:easy_cart/feature/auth/domain/use%20cases/login_case.dart';
 import 'package:easy_cart/feature/auth/domain/use%20cases/sign_up_case.dart';
 import 'package:easy_cart/feature/auth/presentation/logic/Auth/auth_bloc.dart';
 import 'package:easy_cart/utils/core/api_sec.dart';
@@ -34,10 +35,16 @@ void _initAuth() {
       authRepositery: serviceLocator(),
     ),
   );
+  serviceLocator.registerFactory<LoginCase>(
+    () => LoginCase(
+      authRepositery: serviceLocator(),
+    ),
+  );
 
   serviceLocator.registerLazySingleton(
     () => AuthBloc(
       userSignUp: serviceLocator(),
+      loginCase: serviceLocator(),
     ),
   );
 }

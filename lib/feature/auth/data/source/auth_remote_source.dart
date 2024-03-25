@@ -20,8 +20,20 @@ class AuthRemoteDataSource implements AuthRemoteService {
   AuthRemoteDataSource({required this.supabaseClient});
   @override
   Future<String> loginWithEmail(
-      {required String email, required String password}) {
-    throw UnimplementedError();
+      {required String email, required String password}) async {
+    try {
+      final res = await supabaseClient.auth.signInWithPassword(
+        password: password,
+        email: email,
+      );
+
+      if (res.user == null) {
+        throw ServerException(errorMessage: 'User not exist');
+      }
+      return '${res.user?.id}';
+    } on ServerException catch (e) {
+      throw ServerException(errorMessage: '$e');
+    }
   }
 
   @override

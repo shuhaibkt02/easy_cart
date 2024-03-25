@@ -1,3 +1,4 @@
+
 import 'package:easy_cart/feature/auth/presentation/logic/Auth/auth_bloc.dart';
 import 'package:easy_cart/feature/auth/presentation/screen/login_screen.dart';
 import 'package:easy_cart/feature/auth/presentation/screen/sign_up_screen.dart';
@@ -40,8 +41,15 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  loginFunc({required GlobalKey<FormState> formKey}) {
+  loginFunc(
+      {required BuildContext context, required GlobalKey<FormState> formKey}) {
     if (formKey.currentState!.validate()) {
+      context.read<AuthBloc>().add(
+            AuthLogin(
+              email: emailController.text.trim(),
+              password: passwordController.text.trim(),
+            ),
+          );
       emailController.clear();
       passwordController.clear();
     }
