@@ -14,37 +14,37 @@ Future<void> initDependency() async {
   final supabase = await Supabase.initialize(
       url: BaseUri.supabaseURI, anonKey: BaseUri.supabaseKEY);
 
-  serviceLocator.registerLazySingleton(() => supabase);
+  serviceLocator.registerLazySingleton<SupabaseClient>(() => supabase.client);
 }
 
 void _initAuth() {
   serviceLocator.registerFactory<AuthRemoteDataSource>(
     () => AuthRemoteDataSource(
-      supabaseClient: serviceLocator(),
+      supabaseClient: serviceLocator<SupabaseClient>(),
     ),
   );
 
   serviceLocator.registerFactory<AuthRepositery>(
     () => AuthRepositery(
-      authRemoteDataSource: serviceLocator(),
+      authRemoteDataSource: serviceLocator<AuthRemoteDataSource>(),
     ),
   );
 
   serviceLocator.registerFactory<UserSignUp>(
     () => UserSignUp(
-      authRepositery: serviceLocator(),
+      authRepositery: serviceLocator<AuthRepositery>(),
     ),
   );
   serviceLocator.registerFactory<LoginCase>(
     () => LoginCase(
-      authRepositery: serviceLocator(),
+      authRepositery: serviceLocator<AuthRepositery>(),
     ),
   );
 
-  serviceLocator.registerLazySingleton(
+  serviceLocator.registerLazySingleton<AuthBloc>(
     () => AuthBloc(
-      userSignUp: serviceLocator(),
-      loginCase: serviceLocator(),
+      userSignUp: serviceLocator<UserSignUp>(),
+      loginCase: serviceLocator<LoginCase>(),
     ),
   );
 }
