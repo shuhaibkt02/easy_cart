@@ -1,6 +1,5 @@
-import 'dart:developer';
-
 import 'package:easy_cart/feature/onboarding/constant.dart';
+import 'package:easy_cart/feature/onboarding/presentation/logic/onboard_provider.dart';
 import 'package:easy_cart/feature/onboarding/presentation/widget/dot_indicator.dart';
 import 'package:easy_cart/feature/onboarding/presentation/widget/pic_text.dart';
 import 'package:flutter/material.dart';
@@ -12,19 +11,15 @@ class OnBoardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     final textstyle = Theme.of(context).textTheme;
-    PageController pageController = PageController();
-    ValueNotifier<int> currentPageNotifier = ValueNotifier<int>(0);
+    final onBoard = OnBoardFunctions();
 
     return Scaffold(
       body: Column(
         children: [
           Expanded(
             child: PageView.builder(
-              controller: pageController,
-              onPageChanged: (value) {
-                currentPageNotifier.value = value;
-                log('$value');
-              },
+              controller: onBoard.pageController,
+              onPageChanged: (value) => onBoard.onPageChanged(value: value),
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 final item = mainList[index];
@@ -43,9 +38,22 @@ class OnBoardScreen extends StatelessWidget {
             ),
           ),
           ValueListenableBuilder<int>(
-            valueListenable: currentPageNotifier,
+            valueListenable: onBoard.currentPageNotifier,
             builder: (context, currentPage, child) {
-              return DotIndicator(width: width, selectedIndex: currentPage);
+              return DotIndicator(
+                width: width,
+                selectedIndex: currentPage,
+                previousTap: () {
+                  onBoard.previousPage(currentPage: currentPage);
+                },
+                forwardTap: () {
+                  onBoard.forwardPage(
+                    currentPage: currentPage,
+                    context: context,
+                    mainList: mainList,
+                  );
+                },
+              );
             },
           ),
         ],

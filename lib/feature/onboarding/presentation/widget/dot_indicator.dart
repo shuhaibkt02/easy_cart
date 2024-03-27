@@ -5,11 +5,13 @@ class DotIndicator extends StatelessWidget {
   const DotIndicator({
     super.key,
     required this.width,
-    required this.selectedIndex,
+    required this.selectedIndex, required this.previousTap, required this.forwardTap,
   });
 
   final double width;
   final int selectedIndex;
+  final VoidCallback previousTap;
+  final VoidCallback forwardTap;
 
   @override
   Widget build(BuildContext context) {
@@ -21,28 +23,34 @@ class DotIndicator extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             if (selectedIndex != 0)
-              Container(
-                width: 50,
-                height: 50,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  border: Border.all(color: mainColor),
-                ),
-                child: const Icon(
-                  Icons.arrow_back,
-                  color: mainColor,
+              InkWell(
+                onTap: previousTap,
+                child: Container(
+                  width: 50,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    border: Border.all(color: mainColor),
+                  ),
+                  child: const Icon(
+                    Icons.arrow_back,
+                    color: mainColor,
+                  ),
                 ),
               ),
             if (selectedIndex == 0) const SizedBox(width: 50),
             _DotIndicator(
               activeIndex: selectedIndex,
             ),
-            const CircleAvatar(
-              backgroundColor: mainColor,
-              radius: 25,
-              child: Icon(
-                Icons.arrow_forward,
-                color: Colors.white,
+            InkWell(
+              onTap: forwardTap,
+              child: const CircleAvatar(
+                backgroundColor: mainColor,
+                radius: 25,
+                child: Icon(
+                  Icons.arrow_forward,
+                  color: Colors.white,
+                ),
               ),
             ),
           ],
