@@ -1,5 +1,4 @@
 import 'package:easy_cart/feature/auth/presentation/logic/Auth/auth_bloc.dart';
-import 'package:easy_cart/feature/auth/presentation/screen/create_profile_screen.dart';
 import 'package:easy_cart/feature/auth/presentation/screen/sign_up_screen.dart';
 import 'package:easy_cart/utils/core/custom_theme.dart';
 import 'package:easy_cart/utils/core/init_depentency.dart';
