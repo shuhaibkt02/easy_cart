@@ -14,13 +14,22 @@ class UserSignUp implements UseCase<UserEntity, SignUpParams> {
       name: params.name,
       email: params.email,
       password: params.password,
+      phone: params.phone,
+      gender: params.gender,
+      imagePath: params.imagePath,
     );
   }
 }
 
 class SignUpParams {
-  final String email, password, name;
+  final String email, password, name, phone, gender, imagePath;
 
-  SignUpParams(
-      {required this.email, required this.password, required this.name});
+  SignUpParams({
+    required this.email,
+    required this.password,
+    required this.name,
+    required this.phone,
+    required this.gender,
+    required this.imagePath,
+  });
 }

@@ -18,3 +18,4 @@ final class AuthError extends AuthState {
 
   AuthError({required this.errorMessage});
 }
+

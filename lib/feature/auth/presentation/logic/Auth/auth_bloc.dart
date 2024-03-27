@@ -11,7 +11,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final UserSignUp _userSignUp;
   final LoginCase _loginCase;
 
-
   AuthBloc({
     required UserSignUp userSignUp,
     required LoginCase loginCase,
@@ -27,6 +26,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             email: event.email,
             password: event.password,
             name: event.name,
+            phone: event.phone,
+            gender: event.gender,
+            imagePath: event.imagePath,
           ),
         );
 
@@ -49,5 +51,4 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       );
     });
   }
-  
 }

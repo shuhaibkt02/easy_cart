@@ -12,5 +12,8 @@ abstract interface class AuthService {
     required String name,
     required String email,
     required String password,
+    required String phone,
+    required String gender,
+    required String imagePath,
   });
 }
