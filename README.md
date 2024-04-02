@@ -2,6 +2,14 @@
 
 Easy Cart is a user-friendly online shopping grocery application built using Flutter. It provides a seamless shopping experience for users to browse, search, and purchase groceries conveniently.
 
+# Screenshot
+![splash](https://github.com/shuhaibkt02/easy_cart/assets/111732518/9aaa01b7-fd6a-4a7c-9289-29402c7d1a49) ![onboard1](https://github.com/shuhaibkt02/easy_cart/assets/111732518/5a260fe8-2348-47fb-b415-dd1ce1ee47a0) ![login](https://github.com/shuhaibkt02/easy_cart/assets/111732518/1e733453-f974-4320-98cf-99e56ff0c6e4)
+
+
+
+
+
+
 ## Features
 
 - Browse a wide range of grocery items
