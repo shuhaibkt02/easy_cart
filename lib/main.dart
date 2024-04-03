@@ -1,5 +1,5 @@
 import 'package:easy_cart/feature/auth/presentation/logic/Auth/auth_bloc.dart';
-import 'package:easy_cart/feature/onboarding/presentation/screen/splash_screen.dart';
+import 'package:easy_cart/feature/home/presentation/screen/home_screen.dart';
 import 'package:easy_cart/utils/core/custom_theme.dart';
 import 'package:easy_cart/utils/core/init_depentency.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: appTheme,
       title: 'Easy Cart',
-      home: const SplashScreen(),
+      home: const HomeScreen(),
     );
   }
 }

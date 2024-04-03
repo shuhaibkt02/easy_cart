@@ -5,7 +5,9 @@ class DotIndicator extends StatelessWidget {
   const DotIndicator({
     super.key,
     required this.width,
-    required this.selectedIndex, required this.previousTap, required this.forwardTap,
+    required this.selectedIndex,
+    required this.previousTap,
+    required this.forwardTap,
   });
 
   final double width;
@@ -39,7 +41,7 @@ class DotIndicator extends StatelessWidget {
                 ),
               ),
             if (selectedIndex == 0) const SizedBox(width: 50),
-            _DotIndicator(
+            CustomDotIndicator(
               activeIndex: selectedIndex,
             ),
             InkWell(
@@ -60,15 +62,22 @@ class DotIndicator extends StatelessWidget {
   }
 }
 
-class _DotIndicator extends StatelessWidget {
+class CustomDotIndicator extends StatelessWidget {
   final int activeIndex;
-  const _DotIndicator({required this.activeIndex});
+  final int? total;
+  const CustomDotIndicator({
+    super.key,
+    required this.activeIndex,
+    this.total,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
-        3,
+        total ?? 3,
         (index) {
           bool isActive = activeIndex == index;
 

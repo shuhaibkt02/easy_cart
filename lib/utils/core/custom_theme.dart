@@ -4,6 +4,7 @@ ThemeData appTheme = ThemeData(
   scaffoldBackgroundColor: Colors.white,
   colorScheme: ColorScheme.fromSeed(
     seedColor: mainColor,
+    primary: mainColor,
   ),
   inputDecorationTheme: InputDecorationTheme(
     helperStyle: TextStyle(color: Colors.grey.shade400),
