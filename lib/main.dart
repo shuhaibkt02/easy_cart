@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
       theme: appTheme,
       title: 'Easy Cart',
       home: const SplashScreen(),
+      
     );
   }
 }
